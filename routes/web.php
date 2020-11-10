@@ -27,4 +27,4 @@ Route::get('/admin', [App\Http\Controllers\AdminController::class, 'index'])->na
 Route::view('/form', 'form')->name('form');
 Route::post('/formcontroller',  [App\Http\Controllers\FormController::class, 'index']);
 
-Route::get('/data', [App\Http\Controllers\DataController::class, 'index'])->name('data');
+Route::get('/', [App\Http\Controllers\DataController::class, 'index'])->name('data');
