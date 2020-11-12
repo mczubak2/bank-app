@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Http\Request;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -27,4 +28,35 @@ Route::get('/admin', [App\Http\Controllers\AdminController::class, 'index'])->na
 Route::view('/form', 'form')->name('form');
 Route::post('/formcontroller',  [App\Http\Controllers\FormController::class, 'index']);
 
-Route::get('/', [App\Http\Controllers\DataController::class, 'index'])->name('data');
+Route::get('/kursy', [App\Http\Controllers\DataController::class, 'index']);
+
+Route::get('/kalkulator', [App\Http\Controllers\CalculatorController::class, 'index']);
+
+
+Route::view('profile', 'profile');
+
+Route::get('profile/{locale}', function ($locale) {
+    if (! in_array($locale, ['en', 'pl'])) {
+        abort(400);
+    }
+
+    App::setLocale($locale);
+
+    return view('profile');
+});
+
+Route::post('/cdv', [App\Http\Controllers\CdvController::class, 'index']);
+Route::view('form', 'form');
+
+
+Route::get('/send', function () {
+
+    $details = [
+        'title' => 'CDV -email',
+        'body' => 'wiadomość testowa',
+
+    ];
+
+    \Mail::to('czuczu442@gmail.com')->send(new \App\Mail\TestMail($details));
+    echo 'Wiadmość wysłana pomyślnie';
+});

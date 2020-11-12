@@ -32,41 +32,7 @@
                 </div>
             @endif
 
-            <style>
-                table {
-                    background-color: #fff;
-                    width: 500px;
-                    padding: 20px;
-                    border-radius: 20px;
-                }
 
-                th {
-                    text-align: left;
-                    padding-bottom: 20px;
-                }
-
-            </style>
-
-            <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
-                <table>
-                    <tr>
-                        <th>Waluta</th>
-                        <th>Kurs</th>
-                    </tr>
-                    @foreach ($tab as $item)
-                        @if ($item['code'] == 'CHF' || $item['code'] == 'EUR' || $item['code'] == 'USD' )
-                            <tr>
-                                <td>
-                                    {{ $item['currency'] }} 
-                                </td>
-                                <td>
-                                    {{ $item['mid'] }}
-                                </td>
-                            </tr>
-                        @endif
-                    @endforeach
-                </table>
-            </div>
         </div>
     </body>
 </html>

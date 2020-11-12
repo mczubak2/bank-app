@@ -9,6 +9,8 @@ class DataController extends Controller
     function index(){
         $tab = Http::get('http://api.nbp.pl/api/exchangerates/tables/a')->json();
 
-        return view('welcome', ['tab' => $tab ? $tab[0]['rates'] : '']);
+        return view('currency.data', [
+            'tab' => $tab ? $tab[0]['rates'] : '',
+        ]);
     }
 }
